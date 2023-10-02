@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 21:41:31 by recherra          #+#    #+#             */
-/*   Updated: 2023/10/02 15:56:59 by recherra         ###   ########.fr       */
+/*   Created: 2023/10/02 15:21:24 by recherra          #+#    #+#             */
+/*   Updated: 2023/10/02 15:55:30 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_recursive_power(int nb, int power)
+int	ft_is_prime(int nb)
 {
-	if (power == 1)
+	int	i;
+
+	i = 2;
+	if (nb <= 1)
+		return (0);
+	else
+	{
+		while (i <= nb / i)
+		{
+			if (nb % i == 0)
+				return (0);
+			i++;
+		}
+	}
+	return (1);
+}
+
+int	ft_find_next_prime(int nb)
+{
+	if (ft_is_prime(nb))
 		return (nb);
 	else
-		return (nb * ft_recursive_power(nb, power - 1));
+		return (ft_find_next_prime(nb + 1));
 }
-
-int	ft_sqrt(int nb)
+/*int	main()
 {
-	int	n;
-
-	n = 1;
-	if (nb == 0)
-		return (0);
-	if (nb == 1)
-		return (1);
-	while (n <= nb / n)
-	{
-		if (n * n == nb)
-			return (n);
-		n++;
-	}
-	return (0);
-}
-/*#include <stdio.h>
-int main()
-{
-	printf("%d\n", ft_sqrt(16))	;
+	printf("%d\n", ft_find_next_prime(4));
 }*/
