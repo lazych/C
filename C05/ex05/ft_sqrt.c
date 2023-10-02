@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: recherra <recherra@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/01 15:30:07 by recherra          #+#    #+#             */
-/*   Updated: 2023/10/01 16:32:01 by recherra         ###   ########.fr       */
+/*   Created: 2023/10/01 21:41:31 by recherra          #+#    #+#             */
+/*   Updated: 2023/10/02 10:00:20 by recherra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+int	ft_recursive_power(int nb, int power)
 {
-	int	result;
+	if (power == 1)
+		return (nb);
+	else
+		return (nb * ft_recursive_power(nb, power - 1));
+}
 
-	result = 1;
-	if (nb < 0)
+int	ft_sqrt(int nb)
+{
+	int	n;
+
+	n = 1;
+	if (nb == 0)
 		return (0);
-	if (nb == 1 || nb == 0)
+	if (nb == 1)
 		return (1);
-	while (nb)
+	while (n <= nb / 2)
 	{
-		result *= nb;
-		nb--;
+		if (nb == ft_recursive_power(n, 2))
+			return (n);
+		n++;
 	}
-	return (result);
+	return (0);
 }
